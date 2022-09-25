@@ -15,8 +15,12 @@ namespace CV19Console
 		private const string _dataUrl = @"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 		static void Main(string[] args)
 		{
-			DateTime[] dates = GetDates();
-			Console.WriteLine(string.Join("\r\n", dates));
+			/*DateTime[] dates = GetDates();
+			Console.WriteLine(string.Join("\r\n", dates));*/
+
+			var russia = GetData().First(data => data.country.Equals("Russia", StringComparison.OrdinalIgnoreCase));
+
+			Console.WriteLine(string.Join("\r\n", GetDates().Zip(russia.counts, (date, count) => $"{date} - {count}")));
 			
 			Console.ReadLine();
 		}
@@ -40,17 +44,40 @@ namespace CV19Console
 						string line = dataReader.ReadLine();
 						if (string.IsNullOrWhiteSpace(line) == true) continue;
 
-						yield return line;
+						yield return line.Replace("Korea,", "Korea -");
 					}
 				}
 			}
 		}
 
-		private static DateTime[] GetDates() => GetDataLines()
-			.First()
-			.Split(',')
-			.Skip(4)
-			.Select(text => DateTime.Parse(text, CultureInfo.InvariantCulture))
-			.ToArray();
+		private static DateTime[] GetDates()
+		{
+			DateTime[] lines = GetDataLines()
+			   .First()
+			   .Split(',')
+			   .Skip(4)
+			   .Select(text => DateTime.Parse(text, CultureInfo.InvariantCulture))
+			   .ToArray();
+
+			return lines;
+		}
+
+		private static IEnumerable<(string country, string province, int[] counts)> GetData()
+		{
+			IEnumerable<string[]> lines = GetDataLines().Skip(1).Select(line => line.Split(','));
+
+			foreach (var line in lines)
+			{
+				string provinceName = line[0].Trim();
+				string countryName = line[1].Trim(' ', '"');
+
+				int[] count = null;
+				try { count = line.Skip(4).Select(int.Parse).ToArray(); }
+				catch {}
+				
+
+				yield return (countryName, provinceName, count);
+			}
+		}
 	}
 }
