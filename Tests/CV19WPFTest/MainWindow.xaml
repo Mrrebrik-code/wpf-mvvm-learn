@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button Content="Button" HorizontalAlignment="Left" Margin="275,165,0,0" VerticalAlignment="Top" Width="221" Height="50"/>
+        <TextBlock HorizontalAlignment="Left" Margin="506,96,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="162"/>
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="585,208,0,0" VerticalAlignment="Top" Width="142"/>
+        <ComboBox HorizontalAlignment="Left" Margin="56,178,0,0" VerticalAlignment="Top" Width="120"/>
+        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="161,262,0,0" VerticalAlignment="Top"/>
+        <TabControl HorizontalAlignment="Left" Height="130" Margin="346,250,0,0" VerticalAlignment="Top" Width="150">
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <Calendar HorizontalAlignment="Left" Margin="585,19,-27.4,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
