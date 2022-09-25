@@ -19,7 +19,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File" Height="20">
-                <MenuItem Header="Exit"></MenuItem>
+                <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"></MenuItem>
             </MenuItem>
 
             <MenuItem Header="Help" Height="20">
