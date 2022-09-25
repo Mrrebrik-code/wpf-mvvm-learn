@@ -18,18 +18,18 @@
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Файл">
-                <MenuItem Header="Выход"></MenuItem>
+            <MenuItem Header="File" Height="20">
+                <MenuItem Header="Exit"></MenuItem>
             </MenuItem>
 
-            <MenuItem Header="Помощь">
-                <MenuItem Header="О программе"></MenuItem>
+            <MenuItem Header="Help" Height="20">
+                <MenuItem Header="Info"></MenuItem>
             </MenuItem>
         </Menu>
 
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
-                <TextBlock Text="Status Bar Text Content"></TextBlock>
+                <TextBlock Text="{Binding Status}" MinWidth="70"></TextBlock>
             </StatusBarItem>
 
             <StatusBarItem>
@@ -38,7 +38,7 @@
         </StatusBar>
 
         <TabControl>
-            <TabItem Header="Вкладка 1">
+            <TabItem Header="Tab 1">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"/>
@@ -59,11 +59,15 @@
                              Fill="Red" Stroke="Black" StrokeThickness="3">
                         
                     </Ellipse>
-                    
+
+                    <GridSplitter Grid.Column="0" Grid.RowSpan="2"
+                                  HorizontalAlignment="Right"
+                                  Width="4"/>
+
                 </Grid>
             </TabItem>
             
-            <TabItem Header="Вкладка 2"></TabItem>
+            <TabItem Header="Tab 2"></TabItem>
         </TabControl>
 
     </DockPanel>
