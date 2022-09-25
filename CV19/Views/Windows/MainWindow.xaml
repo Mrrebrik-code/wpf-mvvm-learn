@@ -6,6 +6,7 @@
         
         xmlns:vm="clr-namespace:CV19.ViewModels"
         xmlns:l="clr-namespace:CV19"
+        xmlns:cmd="clr-namespace:CV19.Infrastructure.Commands"
         
         Title="{Binding Tittle}" 
         Height="450" Width="800" 
@@ -19,7 +20,12 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File" Height="20">
-                <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"></MenuItem>
+                <!--<MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"></MenuItem>-->
+                <MenuItem Header="Exit">
+                    <MenuItem.Command>
+                        <cmd:CloseApplicationCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
             </MenuItem>
 
             <MenuItem Header="Help" Height="20">
