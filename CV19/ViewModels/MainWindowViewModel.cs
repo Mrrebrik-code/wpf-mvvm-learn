@@ -1,6 +1,8 @@
 ﻿using CV19.Infrastructure.Commands;
 using CV19.Models;
 using CV19.ViewModels.Base;
+using OxyPlot;
+using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -32,8 +34,8 @@ namespace CV19.ViewModels
 		#endregion
 		#region TestDataPoints [IEnumerable]
 
-		private IEnumerable<DataPoint> _testDataPoints;
-		public IEnumerable<DataPoint> TestDataPoints
+		private IEnumerable<DataPointModel> _testDataPoints;
+		public IEnumerable<DataPointModel> TestDataPoints
 		{
 			get => _testDataPoints;
 			set => Set(ref _testDataPoints, value);
@@ -52,12 +54,12 @@ namespace CV19.ViewModels
 		{
 			Application.Current.Shutdown();
 		}
-		  
-		#endregion
 
 		#endregion
 
+		#endregion
 
+		public PlotModel MyModel { get; private set; }
 		public MainWindowViewModel()
 		{
 			#region Create Commands
@@ -66,17 +68,27 @@ namespace CV19.ViewModels
 
 			#endregion
 
-			var dataPoints = new List<DataPoint>((int) (360 / 0.1));
-			const double toRad = Math.PI / 180;
+			var dataPoints = new List<DataPointModel>((int) (360 / 0.45));
+			const double toRad = Math.PI / 75;
 
-			for (var x = 0d; x <= 360; x += 0.1d)
+			for (var x = 0d; x <= 360; x += 0.25d)
 			{
 				var y = Math.Sin(x * toRad);
 
-				dataPoints.Add(new DataPoint { XValue = x, YValue = y });
+				dataPoints.Add(new DataPointModel { XValue = x, YValue = y });
 			}
 
 			TestDataPoints = dataPoints;
+
+			this.MyModel = new PlotModel { Title = "Какой-то график :D" };
+			var test = new LineSeries();
+			for (int i = 0; i < dataPoints.Count; i++)
+			{
+				var dataPoint = new DataPoint(dataPoints[i].XValue,dataPoints[i].YValue);
+				test.Points.Add(dataPoint);
+			}
+			
+			this.MyModel.Series.Add(test);
 		}
 	}
 }

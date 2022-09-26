@@ -83,7 +83,7 @@
     <Compile Include="Models\ConfirmedCount.cs" />
     <Compile Include="Models\PlaceInfo.cs" />
     <Compile Include="Models\CountryInfo.cs" />
-    <Compile Include="Models\DataPoint.cs" />
+    <Compile Include="Models\DataPointModel.cs" />
     <Compile Include="Models\ProvinceInfo.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
