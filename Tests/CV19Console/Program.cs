@@ -15,9 +15,6 @@ namespace CV19Console
 		private const string _dataUrl = @"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 		static void Main(string[] args)
 		{
-			/*DateTime[] dates = GetDates();
-			Console.WriteLine(string.Join("\r\n", dates));*/
-
 			var russia = GetData().First(data => data.country.Equals("Russia", StringComparison.OrdinalIgnoreCase));
 
 			Console.WriteLine(string.Join("\r\n", GetDates().Zip(russia.counts, (date, count) => $"{date:dd.MM.yy} - {count}")));
