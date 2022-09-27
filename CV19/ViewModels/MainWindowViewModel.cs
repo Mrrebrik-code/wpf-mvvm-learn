@@ -42,6 +42,25 @@ namespace CV19.ViewModels
 		}
 
 		#endregion
+		#region CurrentSelectedIndexTabControl [int]
+
+		private int _currentSelectedIndexTabControl;
+		public int CurrentSelectedIndexTabControl
+		{
+			get => _currentSelectedIndexTabControl;
+			set
+			{
+				if (value > 6 || value < 0)
+				{
+					return;
+				}
+				
+
+				Set(ref _currentSelectedIndexTabControl, value);
+			}
+		}
+
+		#endregion
 
 		#region Commands
 
@@ -57,6 +76,18 @@ namespace CV19.ViewModels
 
 		#endregion
 
+		#region SetSelectedIndexTabControlCommand
+		public ICommand SetSelectedIndexCommand { get; }
+		private bool CanSetSelectedIndexCommandExecute(object parameter) => true;
+		private void OnSetSelectedIndexCommandExecuted(object parameter)
+		{
+			if (parameter == null) return;
+
+			var index = Convert.ToInt32(parameter);
+			CurrentSelectedIndexTabControl += index;
+		}
+		#endregion
+
 		#endregion
 
 		public PlotModel MyModel { get; private set; }
@@ -65,6 +96,7 @@ namespace CV19.ViewModels
 			#region Create Commands
 
 			CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+			SetSelectedIndexCommand = new LambdaCommand(OnSetSelectedIndexCommandExecuted, CanSetSelectedIndexCommandExecute);
 
 			#endregion
 
