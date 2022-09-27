@@ -77,7 +77,18 @@
 
         <TabControl SelectedIndex="{Binding CurrentSelectedIndexTabControl}">
             <TabItem Header="Students">
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Header="Groups">
+                        <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="Name"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Students" Grid.Column="1"></GroupBox>
+                </Grid>
             </TabItem>
 
             <TabItem Header="Data Graph">
