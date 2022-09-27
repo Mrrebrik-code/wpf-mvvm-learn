@@ -12,6 +12,8 @@ namespace CV19.ViewModels
 {
 	internal class MainWindowViewModel : ViewModel
 	{
+		#region Properties Fields
+
 		#region Tittle [String]
 
 		private string _title = "CV19";
@@ -61,6 +63,12 @@ namespace CV19.ViewModels
 		}
 
 		#endregion
+		#region MyModel [PlotModel]
+		public PlotModel MyModel { get; private set; }
+
+		#endregion
+
+		#endregion
 
 		#region Commands
 
@@ -75,8 +83,7 @@ namespace CV19.ViewModels
 		}
 
 		#endregion
-
-		#region SetSelectedIndexTabControlCommand
+		#region Set Selected Index TabControl Command
 		public ICommand SetSelectedIndexCommand { get; }
 		private bool CanSetSelectedIndexCommandExecute(object parameter) => true;
 		private void OnSetSelectedIndexCommandExecuted(object parameter)
@@ -90,7 +97,7 @@ namespace CV19.ViewModels
 
 		#endregion
 
-		public PlotModel MyModel { get; private set; }
+	
 		public MainWindowViewModel()
 		{
 			#region Create Commands
@@ -100,27 +107,42 @@ namespace CV19.ViewModels
 
 			#endregion
 
-			var dataPoints = new List<DataPointModel>((int) (360 / 0.45));
+			#region Generation Random Data From Testing
+
+			List<DataPointModel> dataPoints = GenerationRandomTestData();
+			TestDataPoints = dataPoints;
+
+			CreatePlotModelFromTargetListData(dataPoints);
+
+			#endregion
+		}
+
+		private void CreatePlotModelFromTargetListData(List<DataPointModel> dataPoints)
+		{
+			MyModel = new PlotModel { Title = "Какой-то график :D" };
+			LineSeries lineSeries = new LineSeries();
+			for (int i = 0; i < dataPoints.Count; i++)
+			{
+				DataPoint dataPoint = new DataPoint(dataPoints[i].XValue, dataPoints[i].YValue);
+				lineSeries.Points.Add(dataPoint);
+			}
+
+			MyModel.Series.Add(lineSeries);
+		}
+
+		private List<DataPointModel> GenerationRandomTestData()
+		{
+			List<DataPointModel> dataPoints = new List<DataPointModel>((int)(360 / 0.45));
 			const double toRad = Math.PI / 75;
 
-			for (var x = 0d; x <= 360; x += 0.25d)
+			for (double x = 0d; x <= 360; x += 0.25d)
 			{
-				var y = Math.Sin(x * toRad);
+				double y = Math.Sin(x * toRad);
 
 				dataPoints.Add(new DataPointModel { XValue = x, YValue = y });
 			}
 
-			TestDataPoints = dataPoints;
-
-			this.MyModel = new PlotModel { Title = "Какой-то график :D" };
-			var test = new LineSeries();
-			for (int i = 0; i < dataPoints.Count; i++)
-			{
-				var dataPoint = new DataPoint(dataPoints[i].XValue,dataPoints[i].YValue);
-				test.Points.Add(dataPoint);
-			}
-			
-			this.MyModel.Series.Add(test);
+			return dataPoints;
 		}
 	}
 }
