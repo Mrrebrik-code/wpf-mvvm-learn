@@ -143,7 +143,8 @@ namespace CV19.ViewModels
 			{
 				Name = $"Name {studentIndex}",
 				Surname = $"Surname {studentIndex}",
-				Patronymic = $"Patronymic {studentIndex++}",
+				Patronymic = $"Patronymic {studentIndex}",
+				Description = $"Description {studentIndex++}",
 				Birthday = DateTime.Now,
 				Rating = 0
 			});
@@ -151,6 +152,7 @@ namespace CV19.ViewModels
 			IEnumerable<Group> groups = Enumerable.Range(1, 20).Select(i => new Group
 			{
 				Name = $"Group {i}",
+				Description = $"Description {i}",
 				Students = new ObservableCollection<Student>(students)
 			});
 

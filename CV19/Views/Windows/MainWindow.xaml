@@ -101,7 +101,10 @@
                         
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}" 
                             AutoGenerateColumns="False"
-                            IsReadOnly="True">
+                            IsReadOnly="True"
+                                  GridLinesVisibility="Vertical"
+                                  VerticalGridLinesBrush="DarkGray"
+                                  AlternatingRowBackground="LightGray">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
@@ -109,6 +112,7 @@
                                 <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>
                                 <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
                                 <DataGridTextColumn Header="Group" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                                <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
