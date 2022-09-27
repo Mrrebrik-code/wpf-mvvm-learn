@@ -1,10 +1,13 @@
 ﻿using CV19.Infrastructure.Commands;
 using CV19.Models;
+using CV19.Models.Decanat;
 using CV19.ViewModels.Base;
 using OxyPlot;
 using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -68,6 +71,8 @@ namespace CV19.ViewModels
 
 		#endregion
 
+		public ObservableCollection<Group> Groups { get; set; }
+
 		#endregion
 
 		#region Commands
@@ -115,6 +120,31 @@ namespace CV19.ViewModels
 			CreatePlotModelFromTargetListData(dataPoints);
 
 			#endregion
+
+			CreateCollectionGroupFromStudents();
+		}
+
+		private void CreateCollectionGroupFromStudents()
+		{
+			int studentIndex = 1;
+
+			IEnumerable<Student> students = Enumerable.Range(1, 10).Select(i => new Student
+			{
+				Name = $"Name {studentIndex}",
+				Surname = $"Surname {studentIndex}",
+				Patronymic = $"Patronymic {studentIndex++}",
+				Birthday = DateTime.Now,
+				Rating = 0
+			});
+
+			IEnumerable<Group> groups = Enumerable.Range(1, 20).Select(i => new Group
+			{
+				Name = $"Group {i}",
+				Students = new ObservableCollection<Student>(students)
+			});
+
+			Groups = new ObservableCollection<Group>(groups);
+			 
 		}
 
 		private void CreatePlotModelFromTargetListData(List<DataPointModel> dataPoints)

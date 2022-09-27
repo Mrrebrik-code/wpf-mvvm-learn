@@ -76,42 +76,8 @@
         </StatusBar>
 
         <TabControl SelectedIndex="{Binding CurrentSelectedIndexTabControl}">
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <fa:ImageAwesome 
-                            Icon="Search" Foreground="Green"
-                            Height="15" Margin="0,2,5,0"/>
-                        <TextBlock Text="Tab 1"/>
-                    </StackPanel>
-                </TabItem.Header>
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5*"/>
-                        <RowDefinition Height="28*"/>
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="57*"/>
-                        <ColumnDefinition Width="340*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Rectangle Grid.Column="0" Grid.Row="0"
-                               Fill="Blue" 
-                               Stroke="Red" StrokeThickness="3" 
-                               RadiusX="5" RadiusY="7">
-                    </Rectangle>
-
-                    <Ellipse Grid.Column="1" Grid.Row="0" 
-                             Fill="Red" Stroke="Black" StrokeThickness="3">
-                        <Ellipse.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding CloseApplicationCommand}"/>
-                        </Ellipse.InputBindings>
-                    </Ellipse>
-
-                    <GridSplitter Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Right" Width="4"/>
-                </Grid>
+            <TabItem Header="Students">
+                
             </TabItem>
 
             <TabItem Header="Data Graph">
