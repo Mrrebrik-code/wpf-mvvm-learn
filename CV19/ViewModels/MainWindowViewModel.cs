@@ -67,7 +67,18 @@ namespace CV19.ViewModels
 
 		#endregion
 		#region MyModel [PlotModel]
+
 		public PlotModel MyModel { get; private set; }
+
+		#endregion
+		#region SelectedGroup [Group]
+
+		private Group _selectedGroup;
+		public Group SelectedGroup
+		{
+			get => _selectedGroup;
+			set => Set(ref _selectedGroup, value);
+		}
 
 		#endregion
 

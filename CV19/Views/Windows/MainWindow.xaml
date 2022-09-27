@@ -83,11 +83,26 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <GroupBox Header="Groups">
-                        <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="Name"/>
+                    <GroupBox Grid.Column="0" Grid.Row="0">
+                        <GroupBox.Header>
+                            <Run FontWeight="Black">Groups</Run>
+                        </GroupBox.Header>
+                        
+                        <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedGroup}"/>
                     </GroupBox>
 
-                    <GroupBox Header="Students" Grid.Column="1"></GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="0">
+                        <GroupBox.Header>
+                            <TextBlock>
+                                <Run FontWeight="Black">Students group:</Run>
+                                <Run Text="{Binding SelectedGroup.Name, FallbackValue='Students', TargetNullValue='No selected group!'}"></Run>
+                            </TextBlock>
+                        </GroupBox.Header>
+                        
+                        <DataGrid>
+                            
+                        </DataGrid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
 
