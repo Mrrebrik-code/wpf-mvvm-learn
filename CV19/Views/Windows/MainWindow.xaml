@@ -101,14 +101,18 @@
                         </GroupBox.Header>
                         
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}" 
-                            AutoGenerateColumns="False" IsReadOnly="False" CanUserAddRows="False"
+                            AutoGenerateColumns="False" CanUserAddRows="False"
                             GridLinesVisibility="Vertical" VerticalGridLinesBrush="DarkGray" AlternatingRowBackground="LightGray">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
-                                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}"/>
+                                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}" IsReadOnly="True"/>
                                 
                                 <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.Header>
+                                        <Run Text="Birthday"></Run>
+                                    </DataGridTemplateColumn.Header>
+                                    
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="decanat:Student">
                                             <TextBlock>
@@ -123,9 +127,9 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
-                                
-                                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
-                                <DataGridTextColumn Header="Group" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+
+                                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Group" IsReadOnly="True" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
                                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
