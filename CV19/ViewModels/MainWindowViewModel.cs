@@ -158,6 +158,9 @@ namespace CV19.ViewModels
 		{
 			if (!(parametr is Group group)) return;
 
+			int indexGroupLast = Groups.IndexOf(group) - 1;
+			if(indexGroupLast >= 0) SelectedGroup = Groups[indexGroupLast];
+			
 			Groups.Remove(group);
 		}
 
