@@ -88,27 +88,11 @@
 
                     <GroupBox Grid.Row="0" Grid.Column="0">
                         <GroupBox.Resources>
-                            <DataTemplate DataType="{x:Type decanat:Group}">
-                                <TextBlock>
-                                    <Run Foreground="Red">GroupName:</Run>
-                                    <Run Text="{Binding Name}"></Run>
-                                </TextBlock>
-                            </DataTemplate>
-
-                            <DataTemplate DataType="{x:Type decanat:Student}">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Foreground="Red" Text="StudentName:"></TextBlock>
-                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
-                                </StackPanel>
-                            </DataTemplate>
-
-                            <DataTemplate DataType="{x:Type sys:String}">
-                                <TextBlock Foreground="Green" Text="{Binding}"></TextBlock>
-                            </DataTemplate>
-
-                            <DataTemplate DataType="{x:Type sys:Int32}">
-                                <TextBlock Foreground="Blue" Text="{Binding}"></TextBlock>
-                            </DataTemplate>
+                            <ResourceDictionary>
+                                <ResourceDictionary.MergedDictionaries>
+                                    <ResourceDictionary Source="../../Resources/DataTemplates/CompositeListItemsDataTemplates.xaml"/>
+                                </ResourceDictionary.MergedDictionaries>
+                            </ResourceDictionary>
                         </GroupBox.Resources>
                         <GroupBox.Header>
                             <Run FontWeight="Black" Foreground="Orange">Property:</Run>
