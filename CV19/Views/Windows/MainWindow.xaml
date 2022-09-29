@@ -147,7 +147,24 @@
                             <Run FontWeight="Black">Groups</Run>
                         </GroupBox.Header>
 
-                        <ListBox ItemsSource="{Binding Groups}" SelectedIndex="0"  DisplayMemberPath="Name" SelectedItem="{Binding SelectedGroup}" />
+                        <DockPanel>
+                            <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,5,0,0">
+                                <Button Command="{Binding CreateNewGroupCommand}">
+                                    <Button.Margin>0,0,3,0</Button.Margin>
+                                    <Button.Content>
+                                        <TextBlock Text="Create group"></TextBlock>
+                                    </Button.Content>
+                                </Button>
+
+                                <Button Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}">
+                                    <Button.Margin>3,0,0,0</Button.Margin>
+                                    <Button.Content>
+                                        <TextBlock Text="Delete Group"></TextBlock>
+                                    </Button.Content>
+                                </Button>
+                            </UniformGrid>
+                            <ListBox ItemsSource="{Binding Groups}" SelectedIndex="0" DisplayMemberPath="Name" SelectedItem="{Binding SelectedGroup}" />
+                        </DockPanel>
                     </GroupBox>
 
                     <GroupBox Grid.Column="1" Grid.Row="0">

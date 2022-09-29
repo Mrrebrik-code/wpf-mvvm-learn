@@ -91,10 +91,16 @@ namespace CV19.ViewModels
 		}
 
 		#endregion
-
+		#region CompositionColection [Object]
 
 		public object[] CompositionCollection { get; set; }
+
+		#endregion
+		#region Groups [ObservableCollection<Group>]
+
 		public ObservableCollection<Group> Groups { get; set; }
+
+		#endregion
 
 		#endregion
 
@@ -122,16 +128,52 @@ namespace CV19.ViewModels
 			CurrentSelectedIndexTabControl += index;
 		}
 		#endregion
+		#region Create New Group Command
+
+		public ICommand CreateNewGroupCommand { get; }
+
+		private bool CanCreateNewGroupCommandExecute(object parametr) => true;
+		private void OnCreateNewGroupCommandExecuted(object parametr)
+		{
+
+			var groupMaxIndex = Groups.Count + 1;
+			var newGroup = new Group
+			{
+				Name = $"Group {groupMaxIndex}",
+				Students = new ObservableCollection<Student>(),
+				Description = $"Description {groupMaxIndex}"
+			};
+
+			Groups.Add(newGroup);
+
+		}
+
+		#endregion
+		#region Delete Group Command
+
+		public ICommand DeleteGroupCommand { get; }
+
+		private bool CanDeleteGroupCommandExecute(object parametr) => parametr is Group group && Groups.Contains(group);
+		private void OnDeleteGroupCommandExecuted(object parametr)
+		{
+			if (!(parametr is Group group)) return;
+
+			Groups.Remove(group);
+		}
 
 		#endregion
 
-	
+		#endregion
+
+
 		public MainWindowViewModel()
 		{
 			#region Create Commands
 
 			CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
 			SetSelectedIndexCommand = new LambdaCommand(OnSetSelectedIndexCommandExecuted, CanSetSelectedIndexCommandExecute);
+			CreateNewGroupCommand = new LambdaCommand(OnCreateNewGroupCommandExecuted, CanCreateNewGroupCommandExecute);
+			DeleteGroupCommand = new LambdaCommand(OnDeleteGroupCommandExecuted, CanDeleteGroupCommandExecute);
 
 			#endregion
 
@@ -146,6 +188,11 @@ namespace CV19.ViewModels
 
 			CreateCollectionGroupFromStudents();
 
+			CreateCompositionObjectsFromArray();
+		}
+
+		private void CreateCompositionObjectsFromArray()
+		{
 			var listData = new List<Object>();
 
 			listData.Add("Hello World!");
