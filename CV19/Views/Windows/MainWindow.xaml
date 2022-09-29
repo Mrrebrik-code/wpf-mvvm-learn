@@ -134,7 +134,13 @@
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,5,0,0">
                                 <Button Command="{Binding CreateNewGroupCommand}" Style="{StaticResource PrimaryButton}">
                                     <Button.Content>
-                                        <TextBlock Text="Create"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <fa:ImageAwesome Icon="CheckSquare" Height="12">
+                                                <fa:ImageAwesome.Foreground>LightGreen</fa:ImageAwesome.Foreground>
+                                                <fa:ImageAwesome.Margin>0,1.7,5,0</fa:ImageAwesome.Margin>
+                                            </fa:ImageAwesome>
+                                            <TextBlock Text="CREATE"></TextBlock>
+                                        </StackPanel>
                                     </Button.Content>
                                     
                                     <Button.Margin>0,0,3,0</Button.Margin>
@@ -143,7 +149,7 @@
 
                                 <Button Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}" Style="{StaticResource DangerButton}">
                                     <Button.Content>
-                                        <TextBlock Text="Delete"></TextBlock>
+                                        <TextBlock Text="DELETE"></TextBlock>
                                     </Button.Content>
                                     
                                     <Button.Margin>3,0,0,0</Button.Margin>
@@ -201,7 +207,14 @@
             <TabItem Header="Data Graph">
                 <oxy:PlotView Model="{Binding MyModel}"/>
             </TabItem>
-            <TabItem Header="Tab 3"></TabItem>
+            <TabItem Header="Tab 3">
+                <Button Height="45" Width="120" Style="{StaticResource CustomButtonStyle}">
+                    <Button.Content>
+                        <TextBlock>BUTTON</TextBlock>
+                    </Button.Content>
+                    
+                </Button>
+            </TabItem>
             <TabItem Header="Tab 4"></TabItem>
             <TabItem Header="Tab 5"></TabItem>
             <TabItem Header="Tab 6"></TabItem>
