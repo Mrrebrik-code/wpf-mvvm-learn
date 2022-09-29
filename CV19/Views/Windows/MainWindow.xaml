@@ -120,7 +120,18 @@
                         <GroupBox.Header>
                             <TextBlock>Selected Property:</TextBlock>
                         </GroupBox.Header>
-                        <TextBlock Text="{Binding SelectedCompositionObject}"></TextBlock>
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <ListBox ItemsSource="{Binding Students}"></ListBox>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="Red" Text="StudentName:"></TextBlock>
+                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.Resources>
+                        <ContentControl Content="{Binding SelectedCompositionObject}"></ContentControl>
                     </GroupBox>
                 </Grid>
             </TabItem>
