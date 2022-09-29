@@ -94,6 +94,7 @@
                                 </ResourceDictionary.MergedDictionaries>
                             </ResourceDictionary>
                         </GroupBox.Resources>
+                        
                         <GroupBox.Header>
                             <Run FontWeight="Black" Foreground="Orange">Property:</Run>
                         </GroupBox.Header>
@@ -101,20 +102,18 @@
                         <ListBox ItemsSource="{Binding CompositionCollection}" SelectedValue="{Binding SelectedCompositionObject}"></ListBox>
                     </GroupBox>
                     <GroupBox Grid.Row="0" Grid.Column="1">
-                        <GroupBox.Header>
-                            <TextBlock>Selected Property:</TextBlock>
-                        </GroupBox.Header>
                         <GroupBox.Resources>
-                            <DataTemplate DataType="{x:Type decanat:Group}">
-                                <ListBox ItemsSource="{Binding Students}"></ListBox>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type decanat:Student}">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Foreground="Red" Text="StudentName:"></TextBlock>
-                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
-                                </StackPanel>
-                            </DataTemplate>
+                            <ResourceDictionary>
+                                <ResourceDictionary.MergedDictionaries>
+                                    <ResourceDictionary Source="../../Resources/DataTemplates/CompositeItemsControlDataTemplates.xaml"/>
+                                </ResourceDictionary.MergedDictionaries>
+                            </ResourceDictionary>
                         </GroupBox.Resources>
+                        
+                        <GroupBox.Header>
+                            <TextBlock FontWeight="Bold">Selected Property:</TextBlock>
+                        </GroupBox.Header>
+
                         <ContentControl Content="{Binding SelectedCompositionObject}"></ContentControl>
                     </GroupBox>
                 </Grid>
@@ -133,13 +132,6 @@
 
                         <DockPanel>
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,5,0,0">
-                                <UniformGrid.Resources>
-                                    <Style x:Key="ButtonStyle" TargetType="Button">
-                                        <Setter Property="Margin" Value="3,1"/>
-                                        <Setter Property="Padding" Value="3,5"/>
-                                        <Setter Property="Background" Value="White"/>
-                                    </Style>
-                                </UniformGrid.Resources>
                                 <Button Command="{Binding CreateNewGroupCommand}" Style="{StaticResource PrimaryButton}">
                                     <Button.Content>
                                         <TextBlock Text="Create"></TextBlock>
