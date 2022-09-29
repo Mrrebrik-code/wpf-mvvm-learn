@@ -81,7 +81,19 @@ namespace CV19.ViewModels
 		}
 
 		#endregion
+		#region SelectedCompositionObject [Object]
 
+		private object _selectedCompositionObject;
+		public Object SelectedCompositionObject
+		{
+			get => _selectedCompositionObject;
+			set => Set(ref _selectedCompositionObject, value);
+		}
+
+		#endregion
+
+
+		public object[] CompositionCollection { get; set; }
 		public ObservableCollection<Group> Groups { get; set; }
 
 		#endregion
@@ -133,6 +145,15 @@ namespace CV19.ViewModels
 			#endregion
 
 			CreateCollectionGroupFromStudents();
+
+			var listData = new List<Object>();
+
+			listData.Add("Hello World!");
+			listData.Add(20);
+			listData.Add(Groups[0]);
+			listData.Add(Groups[0].Students[0]);
+
+			CompositionCollection = listData.ToArray();
 		}
 
 		private void CreateCollectionGroupFromStudents()

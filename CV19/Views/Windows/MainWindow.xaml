@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:oxy="http://oxyplot.org/wpf"
         
@@ -77,6 +79,51 @@
         </StatusBar>
 
         <TabControl SelectedIndex="{Binding CurrentSelectedIndexTabControl}">
+            <TabItem Header="Composistion Property">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Grid.Row="0" Grid.Column="0">
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <TextBlock>
+                                    <Run Foreground="Red">GroupName:</Run>
+                                    <Run Text="{Binding Name}"></Run>
+                                </TextBlock>
+                            </DataTemplate>
+
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="Red" Text="StudentName:"></TextBlock>
+                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+
+                            <DataTemplate DataType="{x:Type sys:String}">
+                                <TextBlock Foreground="Green" Text="{Binding}"></TextBlock>
+                            </DataTemplate>
+
+                            <DataTemplate DataType="{x:Type sys:Int32}">
+                                <TextBlock Foreground="Blue" Text="{Binding}"></TextBlock>
+                            </DataTemplate>
+                        </GroupBox.Resources>
+                        <GroupBox.Header>
+                            <Run FontWeight="Black" Foreground="Orange">Property:</Run>
+                        </GroupBox.Header>
+
+                        <ListBox ItemsSource="{Binding CompositionCollection}" SelectedValue="{Binding SelectedCompositionObject}"></ListBox>
+                    </GroupBox>
+                    <GroupBox Grid.Row="0" Grid.Column="1">
+                        <GroupBox.Header>
+                            <TextBlock>Selected Property:</TextBlock>
+                        </GroupBox.Header>
+                        <TextBlock Text="{Binding SelectedCompositionObject}"></TextBlock>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
             <TabItem Header="Students">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -99,7 +146,7 @@
                                 <Run Text="{Binding SelectedGroup.Name, FallbackValue='Students', TargetNullValue='No selected group!'}"></Run>
                             </TextBlock>
                         </GroupBox.Header>
-                        
+
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}" 
                             AutoGenerateColumns="False" CanUserAddRows="False"
                             GridLinesVisibility="Vertical" VerticalGridLinesBrush="DarkGray" AlternatingRowBackground="LightGray">
@@ -107,12 +154,12 @@
                                 <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}" IsReadOnly="True"/>
-                                
+
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.Header>
                                         <Run Text="Birthday"></Run>
                                     </DataGridTemplateColumn.Header>
-                                    
+
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="decanat:Student">
                                             <TextBlock>
@@ -136,7 +183,6 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-
             <TabItem Header="Data Graph">
                 <oxy:PlotView Model="{Binding MyModel}"/>
             </TabItem>
@@ -144,7 +190,6 @@
             <TabItem Header="Tab 4"></TabItem>
             <TabItem Header="Tab 5"></TabItem>
             <TabItem Header="Tab 6"></TabItem>
-            <TabItem Header="Tab 7"></TabItem>
         </TabControl>
     </DockPanel>
 </Window>
