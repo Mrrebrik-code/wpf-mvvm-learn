@@ -149,15 +149,20 @@
 
                         <DockPanel>
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,5,0,0">
-                                <Button Command="{Binding CreateNewGroupCommand}">
-                                    <Button.Margin>0,0,3,0</Button.Margin>
+                                <UniformGrid.Resources>
+                                    <Style x:Key="ButtonStyle" TargetType="Button">
+                                        <Setter Property="Margin" Value="3,1"/>
+                                        <Setter Property="Padding" Value="3,5"/>
+                                        <Setter Property="Background" Value="White"/>
+                                    </Style>
+                                </UniformGrid.Resources>
+                                <Button Command="{Binding CreateNewGroupCommand}" Style="{StaticResource ButtonStyle}">
                                     <Button.Content>
                                         <TextBlock Text="Create group"></TextBlock>
                                     </Button.Content>
                                 </Button>
 
-                                <Button Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}">
-                                    <Button.Margin>3,0,0,0</Button.Margin>
+                                <Button Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}" Style="{StaticResource ButtonStyle}">
                                     <Button.Content>
                                         <TextBlock Text="Delete Group"></TextBlock>
                                     </Button.Content>
