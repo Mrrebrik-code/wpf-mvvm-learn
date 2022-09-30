@@ -208,7 +208,7 @@
                 <oxy:PlotView Model="{Binding MyModel}"/>
             </TabItem>
             <TabItem Header="Tab 3">
-                <Button Height="45" Width="120" Style="{StaticResource CustomButtonStyle}">
+                <Button Height="45" Width="120" Style="{StaticResource CheckButtonStyle}">
                     <Button.Content>
                         <TextBlock>BUTTON</TextBlock>
                     </Button.Content>
