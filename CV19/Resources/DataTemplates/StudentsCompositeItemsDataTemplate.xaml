@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    
+                    xmlns:decanat="clr-namespace:CV19.Models.Decanat">
+
+    <DataTemplate DataType="{x:Type decanat:Group}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Name}" Name="Group_Name"/>
+            <TextBlock Text="{Binding Students.Count, StringFormat=' [Count:{0}]'}" Name="Students_Counter"/>
+        </StackPanel>
+
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Students.Count}" Value="0">
+                <!--<Setter TargetName="Group_Name" Property="Foreground" Value="Red"/>-->
+                <Setter TargetName="Students_Counter" Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Black" />
+                    </Setter.Value>
+                </Setter>
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="Students_Counter"
+                                            Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"
+                                            To="Red"
+                                            Duration="0:0:1"
+                                            AutoReverse="True"
+                                            RepeatBehavior="Forever"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    
+</ResourceDictionary>

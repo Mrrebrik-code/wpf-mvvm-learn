@@ -131,6 +131,13 @@
                         </GroupBox.Header>
 
                         <DockPanel>
+                            <DockPanel.Resources>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary Source="../../Resources/DataTemplates/StudentsCompositeItemsDataTemplate.xaml"/>
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
+                            </DockPanel.Resources>
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,5,0,0">
                                 <Button Command="{Binding CreateNewGroupCommand}" Style="{StaticResource CheckButtonStyle}">
                                     <Button.Content>CREATE</Button.Content>
@@ -146,7 +153,7 @@
                                     <Button.Height>30</Button.Height>
                                 </Button>
                             </UniformGrid>
-                            <ListBox ItemsSource="{Binding Groups}" SelectedIndex="0" DisplayMemberPath="Name" SelectedItem="{Binding SelectedGroup}" />
+                            <ListBox ItemsSource="{Binding Groups}" SelectedIndex="0" SelectedItem="{Binding SelectedGroup}" />
                         </DockPanel>
                     </GroupBox>
 
