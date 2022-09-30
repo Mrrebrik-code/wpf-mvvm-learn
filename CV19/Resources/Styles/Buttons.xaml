@@ -60,12 +60,12 @@
             <Trigger Property="IsDefaulted" Value="true">
                 <Setter Property="BorderBrush" TargetName="border" Value="White"/>
             </Trigger>
-            <Trigger Property="IsMouseOver" Value="true">
+            <!--<Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background" TargetName="border" Value="White"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="Green"/>
                 <Setter Property="Foreground" TargetName="Icon" Value="Green"/>
                 <Setter Property="Foreground" Value="Green"/>
-            </Trigger>
+            </Trigger>-->
             <Trigger Property="IsPressed" Value="true">
                 <Setter Property="Background" TargetName="border" Value="White"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="#556832"/>
