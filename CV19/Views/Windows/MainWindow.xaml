@@ -200,9 +200,23 @@
             <TabItem Header="Tab 3">
                 <DockPanel HorizontalAlignment="Center">
                     <Button Height="45" Width="120" Style="{StaticResource CheckButtonStyle}">
-                        <Button.Content>
-                            <TextBlock>CHECK</TextBlock>
-                        </Button.Content>
+                        <Button.Content>CHECK</Button.Content>
+                        <Button.RenderTransformOrigin>0.5,0.5</Button.RenderTransformOrigin>
+                        <Button.RenderTransform>
+                            <RotateTransform x:Name="Button_Transform_Rotation"/>
+                        </Button.RenderTransform>
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Button_Transform_Rotation"
+                                                         Storyboard.TargetProperty="Angle"
+                                                         From="0" To="360"
+                                                         Duration="0:0:1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
                     </Button>
                     <Button Height="45" Width="120" Style="{StaticResource RemoveButtonStyle}">
                         <Button.Content>
