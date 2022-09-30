@@ -17,7 +17,7 @@
     </Style>
 
     <ControlTemplate x:Key="CustomDefaultButtonTemplate" TargetType="{x:Type Button}">
-        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+        <Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
         </Border>
         <ControlTemplate.Triggers>
@@ -50,9 +50,9 @@
     </Style>
 
     <ControlTemplate x:Key="CheckDefaultButtonTemplate" TargetType="{x:Type Button}">
-        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+        <Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
             <DockPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}">
-                <fa:ImageAwesome Icon="Check" Height="12" Foreground="Red" Margin="5,0"/>
+                <fa:ImageAwesome x:Name="Icon" Icon="Check" Height="12" Foreground="White" Margin="5,0"/>
                 <ContentPresenter x:Name="contentPresenter" Focusable="False"   RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
             </DockPanel>
         </Border>
@@ -61,11 +61,16 @@
                 <Setter Property="BorderBrush" TargetName="border" Value="White"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" TargetName="border" Value="Blue"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="White"/>
+                <Setter Property="Background" TargetName="border" Value="White"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Green"/>
+                <Setter Property="Foreground" TargetName="Icon" Value="Green"/>
+                <Setter Property="Foreground" Value="Green"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
-                <Setter Property="Background" TargetName="border" Value="DarkBlue"/>
+                <Setter Property="Background" TargetName="border" Value="White"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="#556832"/>
+                <Setter Property="Foreground" Value="#c96b74"/>
+                <Setter TargetName="Icon" Property="Foreground" Value="#556832"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="BorderBrush" TargetName="border" Value="Gray"/>
@@ -75,14 +80,57 @@
     </ControlTemplate>
 
     <Style x:Key="CheckButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="BorderBrush" Value="Black"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="Green"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Template" Value="{StaticResource CheckDefaultButtonTemplate}"></Setter>
+    </Style>
+
+    <ControlTemplate x:Key="RemoveDefaultButtonTemplate" TargetType="{x:Type Button}">
+        <Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+            <DockPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}">
+                <fa:ImageAwesome x:Name="Icon"  Icon="Remove" Height="12" Foreground="White" Margin="5,0"/>
+                <ContentPresenter x:Name="contentPresenter" Focusable="False"   RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </DockPanel>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsDefaulted" Value="true">
+                <Setter Property="BorderBrush" TargetName="border" Value="White"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" TargetName="border" Value="White"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="red"/>
+                <Setter Property="Foreground" Value="Red"/>
+                <Setter TargetName="Icon" Property="Foreground" Value="Red"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" TargetName="border" Value="White"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="#c96b74"/>
+                <Setter Property="Foreground" Value="#c96b74"/>
+                <Setter TargetName="Icon" Property="Foreground" Value="#c96b74"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" TargetName="border" Value="White"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="#c96b74"/>
+                <Setter Property="Foreground" Value="#c96b74"/>
+                <Setter TargetName="Icon" Property="Foreground" Value="#c96b74"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="RemoveButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Red"/>
+        <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template" Value="{StaticResource RemoveDefaultButtonTemplate}"></Setter>
     </Style>
 
 

@@ -132,22 +132,12 @@
 
                         <DockPanel>
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,5,0,0">
-                                <Button Command="{Binding CreateNewGroupCommand}" Style="{StaticResource PrimaryButton}">
-                                    <Button.Content>
-                                        <StackPanel Orientation="Horizontal">
-                                            <fa:ImageAwesome Icon="CheckSquare" Height="12">
-                                                <fa:ImageAwesome.Foreground>LightGreen</fa:ImageAwesome.Foreground>
-                                                <fa:ImageAwesome.Margin>0,1.7,5,0</fa:ImageAwesome.Margin>
-                                            </fa:ImageAwesome>
-                                            <TextBlock Text="CREATE"></TextBlock>
-                                        </StackPanel>
-                                    </Button.Content>
-                                    
-                                    <Button.Margin>0,0,3,0</Button.Margin>
+                                <Button Command="{Binding CreateNewGroupCommand}" Style="{StaticResource CheckButtonStyle}">
+                                    <Button.Content>CREATE</Button.Content>
                                     <Button.Height>30</Button.Height>
                                 </Button>
 
-                                <Button Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}" Style="{StaticResource DangerButton}">
+                                <Button Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}" Style="{StaticResource RemoveButtonStyle}">
                                     <Button.Content>
                                         <TextBlock Text="DELETE"></TextBlock>
                                     </Button.Content>
@@ -208,12 +198,20 @@
                 <oxy:PlotView Model="{Binding MyModel}"/>
             </TabItem>
             <TabItem Header="Tab 3">
-                <Button Height="45" Width="120" Style="{StaticResource CheckButtonStyle}">
-                    <Button.Content>
-                        <TextBlock>BUTTON</TextBlock>
-                    </Button.Content>
-                    
-                </Button>
+                <DockPanel HorizontalAlignment="Center">
+                    <Button Height="45" Width="120" Style="{StaticResource CheckButtonStyle}">
+                        <Button.Content>
+                            <TextBlock>CHECK</TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <Button Height="45" Width="120" Style="{StaticResource RemoveButtonStyle}">
+                        <Button.Content>
+                            <TextBlock>REMOVE</TextBlock>
+                        </Button.Content>
+                    </Button>
+                </DockPanel>
+                
+                
             </TabItem>
             <TabItem Header="Tab 4"></TabItem>
             <TabItem Header="Tab 5"></TabItem>
