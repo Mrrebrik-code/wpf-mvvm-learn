@@ -77,7 +77,8 @@
                                         <ResourceDictionary Source="../../Resources/DataTemplates/StudentsCompositeItemsDataTemplate.xaml"/>
                                     </ResourceDictionary.MergedDictionaries>
                                     
-                                    <CollectionViewSource x:Key="GroupsCollection" Source="{Binding Groups}"/>
+                                    <CollectionViewSource x:Key="GroupsCollection" Source="{Binding Groups}"
+                                                          Filter="CollectionViewSource_Filter"/>
                                 </ResourceDictionary>
 
                                 
@@ -85,14 +86,15 @@
 
                             <DockPanel DockPanel.Dock="Top" Margin="0,5">
                                 <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Width="70" 
-                                        Background="White" Template="{StaticResource BorderRadiusButtonTemplate}">
+                                        Background="White" Template="{StaticResource BorderRadiusButtonTemplate}"
+                                        Click="Click_SearchButton">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:ImageAwesome Icon="Search" Height="10" Margin="5,1,5,0"/>
                                         <TextBlock Text="Search" Margin="0,0,5,0"/>
                                     </StackPanel>
                                 </Button>
 
-                                <TextBox Margin="0,0,5,0" Style="{StaticResource CustomTextBoxStyle}"/>
+                                <TextBox x:Name="GroupNameFilterText" Margin="0,0,5,0" Style="{StaticResource CustomTextBoxStyle}"/>
                             </DockPanel>
                             
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,5,0,0">
