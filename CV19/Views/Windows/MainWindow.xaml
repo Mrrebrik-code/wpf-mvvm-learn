@@ -137,17 +137,18 @@
                         <DockPanel>
                             <DockPanel DockPanel.Dock="Top" Margin="0,5">
                                 <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Width="70" 
-                                        Background="White" Template="{StaticResource BorderRadiusButtonTemplate}">
+                                        Background="White" Template="{StaticResource BorderRadiusButtonTemplate}"
+                                        Command="{Binding SeratchFilterTextStudents}">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:ImageAwesome Icon="Search" Height="10" Margin="5,1,5,0"/>
                                         <TextBlock Text="Search" Margin="0,0,5,0"/>
                                     </StackPanel>
                                 </Button>
 
-                                <TextBox Margin="0,0,5,0" Style="{StaticResource CustomTextBoxStyle}"/>
+                                <TextBox Text="{Binding FilterText}"  Margin="0,0,5,0" Style="{StaticResource CustomTextBoxStyle}"/>
                             </DockPanel>
                             
-                            <DataGrid ItemsSource="{Binding SelectedGroup.Students}" 
+                            <DataGrid ItemsSource="{Binding SelectedGroupStudent}" 
                             AutoGenerateColumns="False" CanUserAddRows="False"
                             GridLinesVisibility="Vertical" VerticalGridLinesBrush="DarkGray" AlternatingRowBackground="LightGray">
                                 <DataGrid.Columns>

@@ -7,8 +7,10 @@ using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace CV19.ViewModels
@@ -77,10 +79,27 @@ namespace CV19.ViewModels
 		public Group SelectedGroup
 		{
 			get => _selectedGroup;
-			set => Set(ref _selectedGroup, value);
+			set
+			{
+				if (!Set(ref _selectedGroup, value)) return;
+
+				_selectedGroupStudents.Source = value?.Students;
+				OnPropertyChanged(nameof(SelectedGroupStudent));
+			}
 		}
 
+		private readonly CollectionViewSource _selectedGroupStudents = new CollectionViewSource();
+		public ICollectionView SelectedGroupStudent => _selectedGroupStudents?.View;
+
 		#endregion
+
+		private string _filterText;
+		public string FilterText
+		{
+			get => _filterText;
+			set => Set(ref _filterText, value);
+		}
+
 		#region SelectedCompositionObject [Object]
 
 		private object _selectedCompositionObject;
@@ -115,6 +134,8 @@ namespace CV19.ViewModels
 			get => _studentsTestingCollection;
 			set => Set(ref _studentsTestingCollection, value);
 		}
+
+		
 
 		#endregion
 
@@ -180,6 +201,38 @@ namespace CV19.ViewModels
 
 		#endregion
 
+		public ICommand SeratchFilterTextStudents { get; }
+
+		private bool CanSeratchFilterTextStudents(object parametr) => true;
+		private void OnSeratchFilterTextStudents(object parametr)
+		{
+			_selectedGroupStudents.View.Refresh();
+		}
+		private void FilterHandler(object sender, FilterEventArgs e)
+		{
+			if (!(e.Item is Student student))
+			{
+				e.Accepted = false;
+				return;
+			}
+
+			if(student.Name is null || student.Surname is null || student.Patronymic is null)
+			{
+				e.Accepted = false;
+				return;
+			}
+
+			var filterText = _filterText;
+			if (string.IsNullOrWhiteSpace(filterText)) return;
+
+
+			if (student.Name.Contains(filterText)) return;
+			if (student.Surname.Contains(filterText)) return;
+			if (student.Patronymic.Contains(filterText)) return;
+
+			e.Accepted = false;
+
+		}
 		#endregion
 
 
@@ -191,6 +244,7 @@ namespace CV19.ViewModels
 			SetSelectedIndexCommand = new LambdaCommand(OnSetSelectedIndexCommandExecuted, CanSetSelectedIndexCommandExecute);
 			CreateNewGroupCommand = new LambdaCommand(OnCreateNewGroupCommandExecuted, CanCreateNewGroupCommandExecute);
 			DeleteGroupCommand = new LambdaCommand(OnDeleteGroupCommandExecuted, CanDeleteGroupCommandExecute);
+			SeratchFilterTextStudents = new LambdaCommand(OnSeratchFilterTextStudents, CanSeratchFilterTextStudents);
 
 			#endregion
 
@@ -206,7 +260,11 @@ namespace CV19.ViewModels
 			CreateCollectionGroupFromStudents();
 
 			CreateCompositionObjectsFromArray();
+
+			_selectedGroupStudents.Filter += FilterHandler;
 		}
+
+	
 
 		private void CreateCompositionObjectsFromArray()
 		{
