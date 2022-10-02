@@ -70,12 +70,17 @@
 
                         <DockPanel>
                             <DockPanel.Resources>
+                                
                                 <ResourceDictionary>
                                     <ResourceDictionary.MergedDictionaries>
                                         <!--Data visualization in the list of target groups of students-->
                                         <ResourceDictionary Source="../../Resources/DataTemplates/StudentsCompositeItemsDataTemplate.xaml"/>
                                     </ResourceDictionary.MergedDictionaries>
+                                    
+                                    <CollectionViewSource x:Key="GroupsCollection" Source="{Binding Groups}"/>
                                 </ResourceDictionary>
+
+                                
                             </DockPanel.Resources>
 
                             <DockPanel DockPanel.Dock="Top" Margin="0,5">
@@ -105,7 +110,7 @@
                                     <Button.Height>30</Button.Height>
                                 </Button>
                             </UniformGrid>
-                            <ListBox ItemsSource="{Binding Groups}" SelectedIndex="0" SelectedItem="{Binding SelectedGroup}" />
+                            <ListBox ItemsSource="{Binding Source={StaticResource GroupsCollection}}" SelectedIndex="0" SelectedItem="{Binding SelectedGroup}" />
                         </DockPanel>
                     </GroupBox>
 
