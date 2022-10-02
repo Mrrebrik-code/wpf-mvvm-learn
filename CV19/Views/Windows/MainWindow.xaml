@@ -43,21 +43,6 @@
             <MenuItem Header="File" Height="20">
                 <MenuItem Header="Exit" Command="{StaticResource CloseApplicationCommand}"></MenuItem>
             </MenuItem>
-
-            <MenuItem Header="Help" Height="20">
-                <MenuItem Header="Info"></MenuItem>
-            </MenuItem>
-
-            <MenuItem Command="{Binding SetSelectedIndexCommand}" CommandParameter="-1" Height="20">
-                <MenuItem.Header>
-                    <fa:ImageAwesome Icon="ArrowLeft" Height="12"/>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem Command="{Binding SetSelectedIndexCommand}" CommandParameter="1" Height="20">
-                <MenuItem.Header>
-                    <fa:ImageAwesome Icon="ArrowRight" Height="12"/>
-                </MenuItem.Header>
-            </MenuItem>
         </Menu>
 
         <StatusBar DockPanel.Dock="Bottom">
@@ -65,59 +50,12 @@
                 <TextBlock Text="{Binding Status}" MinWidth="70"></TextBlock>
             </StatusBarItem>
 
-            <StatusBarItem>
+            <StatusBarItem Visibility="Collapsed">
                 <ProgressBar Width="120" Height="13" Value="35"></ProgressBar>
-            </StatusBarItem>
-
-            <StatusBarItem>
-                <TextBlock>
-                    <Run FontWeight="Bold">Index: </Run>
-                    <Run Text="{Binding CurrentSelectedIndexTabControl}"></Run>
-                    <Run>/ 6</Run>
-                </TextBlock>
             </StatusBarItem>
         </StatusBar>
 
         <TabControl SelectedIndex="{Binding CurrentSelectedIndexTabControl}">
-            <TabItem Header="Composistion Property">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <GroupBox Grid.Row="0" Grid.Column="0">
-                        <GroupBox.Resources>
-                            <ResourceDictionary>
-                                <ResourceDictionary.MergedDictionaries>
-                                    <ResourceDictionary Source="../../Resources/DataTemplates/CompositeListItemsDataTemplates.xaml"/>
-                                </ResourceDictionary.MergedDictionaries>
-                            </ResourceDictionary>
-                        </GroupBox.Resources>
-                        
-                        <GroupBox.Header>
-                            <Run FontWeight="Black" Foreground="Orange">Property:</Run>
-                        </GroupBox.Header>
-
-                        <ListBox ItemsSource="{Binding CompositionCollection}" SelectedValue="{Binding SelectedCompositionObject}"></ListBox>
-                    </GroupBox>
-                    <GroupBox Grid.Row="0" Grid.Column="1">
-                        <GroupBox.Resources>
-                            <ResourceDictionary>
-                                <ResourceDictionary.MergedDictionaries>
-                                    <ResourceDictionary Source="../../Resources/DataTemplates/CompositeItemsControlDataTemplates.xaml"/>
-                                </ResourceDictionary.MergedDictionaries>
-                            </ResourceDictionary>
-                        </GroupBox.Resources>
-                        
-                        <GroupBox.Header>
-                            <TextBlock FontWeight="Bold">Selected Property:</TextBlock>
-                        </GroupBox.Header>
-
-                        <ContentControl Content="{Binding SelectedCompositionObject}"></ContentControl>
-                    </GroupBox>
-                </Grid>
-            </TabItem>
             <TabItem Header="Students">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -203,67 +141,9 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Data Graph">
+            <TabItem Header="Data Graph" Visibility="Collapsed">
                 <oxy:PlotView Model="{Binding MyModel}"/>
             </TabItem>
-            <TabItem Header="Tab 3">
-                <DockPanel HorizontalAlignment="Center">
-                    <Button Height="45" Width="120" Style="{StaticResource CheckButtonStyle}">
-                        <Button.Content>CHECK</Button.Content>
-                        <Button.RenderTransformOrigin>0.5,0.5</Button.RenderTransformOrigin>
-                        <Button.RenderTransform>
-                            <RotateTransform x:Name="Button_Transform_Rotation"/>
-                        </Button.RenderTransform>
-                        <Button.Background>
-                            <SolidColorBrush Color="Green" x:Name="Button_Brush_Background"/>
-                        </Button.Background>
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="Button_Transform_Rotation"
-                                                         Storyboard.TargetProperty="Angle"
-                                                         From="0" To="360"
-                                                         Duration="0:0:1" AutoReverse="True"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-
-                            <EventTrigger RoutedEvent="Button.MouseEnter">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="Button_Brush_Background"
-                                                        Storyboard.TargetProperty="Color"
-                                                        To="Orange"
-                                                        Duration="0:0:0.1"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-
-                            <EventTrigger RoutedEvent="Button.MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="Button_Brush_Background"
-                                                        Storyboard.TargetProperty="Color"
-                                                        To="Green"
-                                                        Duration="0:0:1"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
-                    <Button Height="45" Width="120" Style="{StaticResource RemoveButtonStyle}">
-                        <Button.Content>
-                            <TextBlock>REMOVE</TextBlock>
-                        </Button.Content>
-                    </Button>
-                </DockPanel>
-                
-                
-            </TabItem>
-            <TabItem Header="Tab 4"></TabItem>
-            <TabItem Header="Tab 5"></TabItem>
-            <TabItem Header="Tab 6"></TabItem>
         </TabControl>
     </DockPanel>
 </Window>
