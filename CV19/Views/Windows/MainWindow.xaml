@@ -188,7 +188,10 @@
                 <TabItem.Header>Virtualization</TabItem.Header>
                 <GroupBox Header="Testing" HorizontalAlignment="Left" Height="300" Width="250" Margin="30">
                     <Grid>
-                        <ListBox ItemsSource="{Binding StudentsTestingCollection}">
+                        <ListBox ItemsSource="{Binding StudentsTestingCollection}"
+                                 VirtualizingPanel.IsVirtualizing="True"
+                                 VirtualizingPanel.IsContainerVirtualizable="True"
+                                 VirtualizingPanel.VirtualizationMode="Recycling">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Style.Setters>
@@ -196,6 +199,12 @@
                                     </Style.Setters>
                                 </Style>
                             </ListBox.ItemContainerStyle>
+
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
                             <ListBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type decanat:Student}">
                                     <Border Background="LightGray" CornerRadius="3" 
