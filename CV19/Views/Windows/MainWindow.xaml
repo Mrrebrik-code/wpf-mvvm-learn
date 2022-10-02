@@ -184,6 +184,60 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
+            <TabItem>
+                <TabItem.Header>Virtualization</TabItem.Header>
+                <GroupBox Header="Testing" HorizontalAlignment="Left" Height="300" Width="250" Margin="30">
+                    <Grid>
+                        <ListBox ItemsSource="{Binding StudentsTestingCollection}">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Style.Setters>
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                    </Style.Setters>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type decanat:Student}">
+                                    <Border Background="LightGray" CornerRadius="3" 
+                                            BorderBrush="DarkGray" BorderThickness="2"
+                                            Padding="5">
+                                        <DockPanel>
+                                            <DockPanel.Resources>
+                                                <Style x:Key="CustomStyleTabItem" TargetType="TabItem">
+                                                    <Setter Property="Background" Value="DarkSlateGray"></Setter>
+                                                </Style>
+                                            </DockPanel.Resources>
+                                            <fa:ImageAwesome DockPanel.Dock="Right" Margin="0,0,8,0" Icon="Download" Height="30"></fa:ImageAwesome>
+                                            <StackPanel DockPanel.Dock="Left">
+                                                <TabControl Background="Transparent">
+                                                    <TabItem Style="{StaticResource CustomStyleTabItem}" Header="Name" Height="20">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock FontWeight="Black" Text="Name: "/>
+                                                            <TextBlock Text="{Binding Name}"/>
+                                                        </StackPanel>
+                                                    </TabItem>
+                                                    <TabItem Header="Surname" Height="20" Background="Transparent">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock FontWeight="Black" Text="Surname: "/>
+                                                            <TextBlock Text="{Binding Surname}"/>
+                                                        </StackPanel>
+                                                    </TabItem>
+                                                </TabControl>
+                                                
+
+                                                
+                                            </StackPanel>
+                                        </DockPanel>
+
+                                    </Border>
+                                    
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </GroupBox>
+                
+            </TabItem>
             <TabItem Header="Data Graph" Visibility="Collapsed">
                 <oxy:PlotView Model="{Binding MyModel}"/>
             </TabItem>

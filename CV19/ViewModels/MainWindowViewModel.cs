@@ -102,6 +102,20 @@ namespace CV19.ViewModels
 
 		#endregion
 
+		private static Random _random = new Random();
+
+		private IEnumerable<Student> _studentsTestingCollection = Enumerable.Range(1, 1000).Select(i => new Student
+		{
+			Name = $"Name_{_random.Next(0, 9999)}",
+			Surname = $"Surname{_random.Next(0, 9999)}"
+		});
+
+		public IEnumerable<Student> StudentsTestingCollection
+		{
+			get => _studentsTestingCollection;
+			set => Set(ref _studentsTestingCollection, value);
+		}
+
 		#endregion
 
 		#region Commands
