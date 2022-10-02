@@ -134,9 +134,11 @@
                             <DockPanel.Resources>
                                 <ResourceDictionary>
                                     <ResourceDictionary.MergedDictionaries>
+                                        <!--Data visualization in the list of target groups of students-->
                                         <ResourceDictionary Source="../../Resources/DataTemplates/StudentsCompositeItemsDataTemplate.xaml"/>
                                     </ResourceDictionary.MergedDictionaries>
                                 </ResourceDictionary>
+                                
                             </DockPanel.Resources>
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,5,0,0">
                                 <Button Command="{Binding CreateNewGroupCommand}" Style="{StaticResource CheckButtonStyle}">
