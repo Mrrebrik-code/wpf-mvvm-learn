@@ -112,7 +112,17 @@
                                     <Button.Height>30</Button.Height>
                                 </Button>
                             </UniformGrid>
-                            <ListBox ItemsSource="{Binding Source={StaticResource GroupsCollection}}" SelectedIndex="0" SelectedItem="{Binding SelectedGroup}" />
+                            <ListBox ItemsSource="{Binding Source={StaticResource GroupsCollection}}" 
+                                     SelectedIndex="0" SelectedItem="{Binding SelectedGroup}"
+                                     VirtualizingPanel.IsContainerVirtualizable="True"
+                                     VirtualizingPanel.IsVirtualizing="True"
+                                     VirtualizingPanel.VirtualizationMode="Recycling">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                            </ListBox>
                         </DockPanel>
                     </GroupBox>
 

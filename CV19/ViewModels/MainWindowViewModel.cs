@@ -220,7 +220,7 @@ namespace CV19.ViewModels
 				Rating = 0
 			});
 
-			IEnumerable<Group> groups = Enumerable.Range(1, 20).Select(i => new Group
+			IEnumerable<Group> groups = Enumerable.Range(1, 200).Select(i => new Group
 			{
 				Name = $"Group {i}",
 				Description = $"Description {i}",
