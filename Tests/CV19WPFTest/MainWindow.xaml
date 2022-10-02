@@ -13,7 +13,9 @@
         AllowsTransparency="True"
         >
     <Window.Resources>
-       
+
+        
+
     </Window.Resources>
 
     <Border Background="#161616" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="15,0,15,15">
@@ -43,14 +45,14 @@
 
                 <Border Background="#161616" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="15,0,15,0">
                     <StackPanel DockPanel.Dock="Bottom" Background="#090B13">
-
+                        <TextBox Style="{DynamicResource TextBoxStyle1}"></TextBox>
                     </StackPanel>
                 </Border>
-                    
+
             </DockPanel>
-            
+
 
         </Grid>
     </Border>
-    
+
 </Window>
