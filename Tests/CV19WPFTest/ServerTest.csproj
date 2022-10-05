@@ -87,6 +87,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Infrastructure\Commands\Base\Command.cs" />
+    <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Server.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\ServerWindowViewModel.cs" />
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
@@ -121,9 +124,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>

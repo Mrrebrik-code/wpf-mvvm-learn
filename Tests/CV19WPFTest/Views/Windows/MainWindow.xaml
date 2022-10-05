@@ -53,6 +53,11 @@
                                         <TextBlock Text="Port:"/>
                                         <TextBox Text="{Binding PortClient}" Margin="3,0"/>
                                     </DockPanel>
+                                    <Button Margin="0,3,0,0" Command="{Binding StartClientCommand}">
+                                        <StackPanel>
+                                            <TextBlock Text="Connect"/>
+                                        </StackPanel>
+                                    </Button>
                                 </StackPanel>
 
                             </GroupBox.Content>
@@ -114,7 +119,7 @@
                                         <TextBlock Text="Port:"/>
                                         <TextBox Text="{Binding PortServer}" Margin="3,0"/>
                                     </DockPanel>
-                                    <Button Margin="0,3,0,0">
+                                    <Button Margin="0,3,0,0" Command="{Binding StartServerCommand}">
                                         <StackPanel>
                                             <TextBlock Text="{Binding TextButtonListener}"/>
                                         </StackPanel>

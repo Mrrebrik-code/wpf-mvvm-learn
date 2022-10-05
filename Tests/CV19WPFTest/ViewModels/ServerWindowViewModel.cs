@@ -1,4 +1,7 @@
-﻿using ServerTest.ViewModels.Base;
+﻿using ServerTest.Infrastructure.Commands;
+using ServerTest.Models;
+using ServerTest.ViewModels.Base;
+using System.Windows.Input;
 
 namespace ServerTest.ViewModels
 {
@@ -34,7 +37,7 @@ namespace ServerTest.ViewModels
 			set => Set(ref _textMessageFromSendingServer, value);
 		}
 
-		private string _textButtonListener = "Start Listener!";
+		private string _textButtonListener = "Start Server";
 		public string TextButtonListener
 		{
 			get => _textButtonListener;
@@ -71,5 +74,40 @@ namespace ServerTest.ViewModels
 			set => Set(ref _textMessageFromSendingClient, value);
 		}
 		#endregion
+
+
+
+		private Server _server;
+
+
+		public ICommand StartServerCommand { get; }
+
+		private bool CanStartServerCommandExecute(object parameter) => true;
+		private void OnStartServerCommandExecuted(object parameter)
+		{
+			_server = new Server(_ipAdressServer, _portServer);
+			_server.Start();
+			TextButtonListener = "Stop Server";
+		}
+
+
+		private Client _client;
+		public ICommand StartClientCommand { get; }
+
+		private bool CanStartClientCommandExecute(object parameter) => true;
+		private void OnStartClientCommandExecuted(object parameter)
+		{
+			_client = new Client();
+			_client.Connect(_ipAdressClient, _portClient, (message)=>
+			{
+				TextContentFromMessangerClient += $"\n{message}";
+			});
+		}
+
+		public ServerWindowViewModel()
+		{
+			StartClientCommand = new LambdaCommand(OnStartClientCommandExecuted, CanStartClientCommandExecute);
+			StartServerCommand = new LambdaCommand(OnStartServerCommandExecuted, CanStartServerCommandExecute);
+		}
 	}
 }
