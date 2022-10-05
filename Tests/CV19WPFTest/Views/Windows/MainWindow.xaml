@@ -5,25 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:ServerTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" MinHeight="450" MaxHeight="450" 
-        Width="800" MinWidth="800" MaxWidth="800"
+        Title="MainWindow" Height="200" MinHeight="200" MaxHeight="450" 
+        Width="500" MinWidth="500" MaxWidth="800"
         WindowStartupLocation="CenterScreen"
         >
     <Window.Resources>
 
     </Window.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-    </Grid>
-    
+    <TabControl TabStripPlacement="Left">
+        <TabItem Width="100" Height="50">
+            <TabItem.Header>
+                <TextBlock Text="Client"/>
+            </TabItem.Header>
 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <GroupBox Grid.Column="0">
+                    <GroupBox.Header>
+                        <Run>Client Settings:</Run>
+                    </GroupBox.Header>
+
+                    <GroupBox.Content>
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <DockPanel>
+                                <TextBlock Text="IP-Adress:"/>
+                                <TextBox Text="127.0.0.1" Margin="3,0"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock Text="Port:"/>
+                                <TextBox Text="7777" Margin="3,0"/>
+                            </DockPanel>
+                        </StackPanel>
+
+                    </GroupBox.Content>
+                </GroupBox>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0">
+                        <GroupBox.Header>
+                            <TextBlock Text="Messanger:"/>
+                        </GroupBox.Header>
+
+                        <DockPanel>
+                            <DockPanel DockPanel.Dock="Bottom" Height="20" VerticalAlignment="Bottom"
+                                       Margin="0,5,0,0">
+                                <Button DockPanel.Dock="Right" Width="50" Margin="5,0,0,0">
+                                    <StackPanel>
+                                        <TextBlock Text="Send" FontSize="10" FontWeight="Black"/>
+                                    </StackPanel>
+                                </Button>
+                                <TextBox></TextBox>
+                            </DockPanel>
+                            
+                            <Border BorderBrush="Gray" BorderThickness="1" Margin="1" Padding="4">
+                                <TextBlock Text="Mrrebrik [127.0.0.1]: Hello World!"/>
+                            </Border>
+                        </DockPanel>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+            
+        </TabItem>
+
+        <TabItem Width="100" Height="50">
+            <TabItem.Header>
+                <TextBlock Text="Server"/>
+            </TabItem.Header>
+        </TabItem>
+    </TabControl>
 </Window>
