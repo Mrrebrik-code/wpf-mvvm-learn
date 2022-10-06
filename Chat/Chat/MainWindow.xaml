@@ -42,7 +42,8 @@
 
                     <Button Width="20" Height="20"
                             Background="Transparent"
-                            BorderThickness="0">
+                            BorderThickness="0"
+                            Click="Minimize_Button">
                         <Button.Content>
                             <TextBlock Text="_" Foreground="Gray" FontWeight="Bold" 
                                        VerticalAlignment="Center" Margin="0,0,0,3"/>
@@ -51,7 +52,8 @@
 
                     <Button Width="20" Height="20"
                             Background="Transparent"
-                            BorderThickness="0">
+                            BorderThickness="0"
+                            Click="WindowState_Click">
                         <Button.Content>
                             <TextBlock Text="□" Foreground="Gray" FontWeight="Bold" FontSize="17" 
                                        VerticalAlignment="Center" Margin="0,0,0,3"/>
