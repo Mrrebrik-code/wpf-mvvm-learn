@@ -24,5 +24,15 @@ namespace Chat
 		{
 			InitializeComponent();
 		}
+
+		private void Border_MouseDown(object sender, MouseButtonEventArgs eventMouseButton)
+		{
+			if (eventMouseButton.LeftButton == MouseButtonState.Pressed) DragMove();
+		}
+
+		private void Close_Button(object sender, RoutedEventArgs e)
+		{
+			Application.Current.Shutdown();
+		}
 	}
 }

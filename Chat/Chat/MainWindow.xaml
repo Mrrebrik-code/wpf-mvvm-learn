@@ -29,7 +29,8 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.ColumnSpan="2"
-                Background="#252525">
+                Background="#252525"
+                MouseDown="Border_MouseDown">
 
             <Grid HorizontalAlignment="Stretch">
                 <Label Content="Simple Chat"
@@ -58,7 +59,8 @@
                     </Button>
 
                     <Button Width="20" Height="20"
-                            Background="Transparent" BorderThickness="0">
+                            Background="Transparent" BorderThickness="0"
+                            Click="Close_Button">
                         <Button.Content>
                             <TextBlock Text="🗙" FontWeight="Bold" Foreground="Gray" 
                                        VerticalAlignment="Center"/>
